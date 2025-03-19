@@ -1,0 +1,7 @@
+{
+  "name": "mcp-client-tools",
+  "version": "1.0.0",
+  "description": "Tools for testing MCP client",
+  "type": "module",
+  "private": true
+} 
