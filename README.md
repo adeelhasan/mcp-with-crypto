@@ -15,10 +15,18 @@ The Model Context Protocol (MCP) provides a standardized way for AI models to ma
 
 ## Quick Start
 
-Run the setup script to quickly configure the project:
+This project uses Node.js scripts that work across all platforms (Windows, macOS, Linux). To get started:
 
 ```bash
+# Install all dependencies (root, server, client)
+npm run install-all
+
+# Run the setup wizard
 npm run setup
+
+# Start the services
+npm run start-server  # In one terminal
+npm run start-client  # In another terminal
 ```
 
 This will:
@@ -37,19 +45,24 @@ After setup, you need to:
 
 The system consists of:
 
-1. **MCP Server**:
+1. **Cross-Platform Scripts**:
+   - Platform-agnostic Node.js scripts for setup and operation
+   - Unified command interface across all operating systems
+   - Automated dependency management
+
+2. **MCP Server**:
    - Manages contexts and conversations
    - Processes tool requests
    - Verifies cryptocurrency payments
    - Includes payment-required tools
 
-2. **MCP Client**:
+3. **MCP Client**:
    - Web interface for conversations
    - Automated cryptocurrency wallet
    - Payment handling via private key
    - Seamless payment flow
 
-3. **Blockchain Components**:
+4. **Blockchain Components**:
    - Base Sepolia testnet for development
    - USDC stablecoin for payments
    - Ethers.js for blockchain interactions
@@ -71,13 +84,21 @@ For more detailed setup instructions, see:
 
 ## Wallet Generation
 
-Both the server and client need cryptocurrency wallets for operation. The setup script will guide you through wallet generation:
+Both the server and client need cryptocurrency wallets for operation. The setup wizard includes a cross-platform wallet generation tool:
 
 ```bash
 npm run setup
 ```
 
-When prompted, choose to generate wallets for both server and client. Copy the generated private keys to the respective environment files.
+The wizard will:
+1. Guide you through wallet generation for both server and client
+2. Create appropriate environment files for your platform
+3. Help you securely store the generated private keys
+4. Provide instructions for funding the wallets
+
+When prompted, choose to generate wallets for both server and client. Copy the generated private keys to the respective environment files:
+- Server: `server/.env`
+- Client: `client/.env.local`
 
 ## Security Considerations
 

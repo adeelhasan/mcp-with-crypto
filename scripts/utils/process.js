@@ -23,17 +23,43 @@ function runCommand(command, args, options = {}) {
     });
 }
 
-async function runCommandWithRetry(command, args, options = {}, retries = 3) {
-    for (let i = 0; i < retries; i++) {
+/**
+ * Run a command with retry logic
+ * @param {string} command - The command to run
+ * @param {string[]} args - Command arguments
+ * @param {Object} options - Spawn options
+ * @param {number} retries - Number of retries (default: 3)
+ * @returns {Promise<void>}
+ */
+async function runCommandWithRetry(command, args = [], options = {}, retries = 3) {
+    for (let attempt = 1; attempt <= retries; attempt++) {
         try {
-            await runCommand(command, args, options);
-            return;
+            await new Promise((resolve, reject) => {
+                const proc = spawn(command, args, {
+                    ...options,
+                    stdio: 'inherit',
+                    shell: true
+                });
+
+                proc.on('close', (code) => {
+                    if (code === 0) {
+                        resolve();
+                    } else {
+                        reject(new Error(`Command failed with exit code ${code}`));
+                    }
+                });
+
+                proc.on('error', (err) => {
+                    reject(new Error(`Failed to start command: ${err.message}`));
+                });
+            });
+            return; // Success
         } catch (error) {
-            if (i === retries - 1) {
-                throw error;
+            if (attempt === retries) {
+                throw error; // Last attempt failed
             }
-            logger.warning(`Command failed, retrying... (${i + 1}/${retries})`);
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            logger.warn(`Attempt ${attempt} failed, retrying...`);
+            await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
         }
     }
 }

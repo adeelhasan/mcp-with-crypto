@@ -17,9 +17,7 @@ npm install ethers@5.7.2
    cd server
    
    # Run the wallet generation script
-   .\generate-wallet.bat
-   # Or directly with Node:
-   # node tools/generate-wallet.js
+   node tools/generate-wallet.js
    ```
 
    This will output a wallet address and private key. Copy the private key for the next step.
@@ -52,11 +50,10 @@ Notes:
 Start the server with:
 
 ```bash
+# From the project root
+npm run start-server
+
+# Or directly with npm
+cd server
 npm run dev
-```
-
-Or using the provided script:
-
-```bash
-.\start-server.bat
 ``` 
