@@ -34,4 +34,4 @@ logs/
 *.log
 
 # Build artifacts
-*.tsbuildinfo
+*.tsbuildinfowallet_back.txt
