@@ -35,3 +35,4 @@ logs/
 
 # Build artifacts
 *.tsbuildinfowallet_back.txt
+*.bat
