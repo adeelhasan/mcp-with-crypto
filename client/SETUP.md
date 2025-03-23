@@ -58,13 +58,12 @@ The application is configured to use the Base Sepolia testnet with the following
 Start the client with:
 
 ```bash
+# From the project root
+npm run start-client
+
+# Or directly with npm
+cd client
 npm run dev
-```
-
-Or using the provided script:
-
-```bash
-.\start-client.bat
 ```
 
 ## Automated Payment Flow

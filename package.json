@@ -4,10 +4,11 @@
   "description": "Model Context Protocol with Crypto Payment Integration",
   "private": true,
   "scripts": {
-    "start-client": "node start.js client",
+    "setup": "node scripts/setup.js",
+    "install-all": "node scripts/install.js",
     "start-server": "node start.js server",
-    "test-payment": "node start.js test",
-    "setup": "npm install && cd server && npm install && cd ../client && npm install"
+    "start-client": "node start.js client",
+    "test-payment": "node start.js test"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -20,6 +21,9 @@
   ],
   "dependencies": {
     "child_process": "^1.0.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "chalk": "^4.1.2",
+    "dotenv": "^16.3.1",
+    "inquirer": "^8.2.6"
   }
 } 
