@@ -1,0 +1,16 @@
+{
+  "name": "mcp-with-crypto",
+  "version": "1.0.0",
+  "description": "Model Context Protocol with Cryptocurrency Demo",
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "install-all": "node scripts/install.js",
+    "start-server": "node scripts/start.js server",
+    "start-client": "node scripts/start.js client"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "dotenv": "^16.3.1",
+    "inquirer": "^8.2.6"
+  }
+} 

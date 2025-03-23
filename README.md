@@ -18,7 +18,7 @@ The Model Context Protocol (MCP) provides a standardized way for AI models to ma
 Run the setup script to quickly configure the project:
 
 ```bash
-.\setup.bat
+npm run setup
 ```
 
 This will:
@@ -30,8 +30,8 @@ This will:
 After setup, you need to:
 1. Fund the server wallet with Base Sepolia testnet ETH
 2. Fund the client wallet with Base Sepolia testnet ETH and USDC
-3. Start the server: `.\start-server.bat`
-4. Start the client: `.\start-client.bat`
+3. Start the server: `npm run start-server`
+4. Start the client: `npm run start-client`
 
 ## Architecture
 
@@ -71,21 +71,13 @@ For more detailed setup instructions, see:
 
 ## Wallet Generation
 
-Both the server and client need cryptocurrency wallets for operation:
+Both the server and client need cryptocurrency wallets for operation. The setup script will guide you through wallet generation:
 
-### Server Wallet
 ```bash
-cd server
-.\generate-wallet.bat
+npm run setup
 ```
 
-### Client Wallet
-```bash
-cd client
-.\generate-wallet.bat
-```
-
-Copy the generated private keys to the respective environment files.
+When prompted, choose to generate wallets for both server and client. Copy the generated private keys to the respective environment files.
 
 ## Security Considerations
 
