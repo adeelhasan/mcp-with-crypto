@@ -1,0 +1,25 @@
+{
+  "name": "mcp-with-crypto",
+  "version": "1.0.0",
+  "description": "Model Context Protocol with Crypto Payment Integration",
+  "private": true,
+  "scripts": {
+    "start-client": "node start.js client",
+    "start-server": "node start.js server",
+    "test-payment": "node start.js test",
+    "setup": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "ai",
+    "crypto",
+    "payment",
+    "model-context-protocol"
+  ],
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "path": "^0.12.7"
+  }
+} 

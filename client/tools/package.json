@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "description": "Tools for testing MCP client",
   "type": "module",
-  "private": true
-} 
+  "private": true,
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}

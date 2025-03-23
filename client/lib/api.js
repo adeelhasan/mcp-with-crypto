@@ -2,7 +2,7 @@
  * API Client for MCP Server
  */
 import axios from 'axios';
-import cryptoClient from './cryptoClient';
+import cryptoClient from './cryptoClient.js';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
