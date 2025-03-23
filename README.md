@@ -158,7 +158,23 @@ When prompted, choose to generate wallets for both server and client. Copy the g
 
 ## Security Considerations
 
-This implementation is for demonstration purposes:
+This implementation is provided as a demonstration of cryptocurrency payments for AI services and is not intended for production use:
+
+### Payment Verification
+
+The system includes a basic payment verification mechanism that:
+- Confirms payments on the blockchain before providing service
+- Verifies transaction amounts and recipient addresses
+- Associates payments with specific requests
+
+### Demonstration Limitations
+
+This is a technology demonstration with simplified security measures:
+- Payment verification happens off-chain rather than through smart contracts
+- A more robust implementation would use custom smart contracts for payment verification
+- Full on-chain verification would require additional blockchain development beyond this demo's scope
+
+### Additional Security Notes
 
 - The client-side private key approach is not recommended for production
 - For a production environment, consider using:
