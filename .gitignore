@@ -35,3 +35,10 @@ logs/
 
 # Build artifacts
 *.tsbuildinfo
+
+# Batch files
+*.bat
+
+# Wallet files
+wallet.txt
+wallet_back.txt
