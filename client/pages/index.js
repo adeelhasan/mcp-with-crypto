@@ -56,11 +56,11 @@ export default function Home() {
       
       console.log(`📝 Context created: ${contextId}`);
       
-      // Step 2: Send hash command (this will require payment)
-      console.log('🔄 Sending hash command...');
+      // Step 2: Send paidTierAccessKeys command (this will require payment)
+      console.log('🔄 Sending paidtieraccesskeys command...');
       const response = await api.sendMessage(
         contextId, 
-        '/hash Hello, autonomous crypto payments!',
+        '/paidtieraccesskeys',
         'user',
         true // enable auto-payment
       );

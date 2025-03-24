@@ -10,29 +10,40 @@ const cryptoWallet = require('./cryptoWallet');
 // Payment details
 const PAYMENT_AMOUNT = "0.10"; // 0.10 USDC (human-readable format, USDC has 6 decimals)
 const PAYMENT_CURRENCY = "USDC";
-const PAYMENT_DESCRIPTION = "SHA-1 hash generation service";
+const PAYMENT_DESCRIPTION = "Premium tier access keys for compute resources";
 
 // Tool functions
 const tools = {
-  // Capitalize the input text
-  capitalize: (text) => {
+  // Free tier access keys generator
+  // This is a free tool provided for testing and demonstration purposes
+  // In a real-world scenario, this would represent a basic free tier functionality
+  // that provides limited access keys with shorter validity
+  freetieraccesskeys: () => {
+    // Generate access keys (hash of current time)
+    const currentTime = new Date().toISOString();
+    const accessKeys = crypto.createHash('sha256').update(currentTime).digest('hex');
+    
     return {
-      result: text.toUpperCase(),
+      result: `Free Tier Access Keys: ${accessKeys}\nValid for 1 hour. Use these keys to access basic compute resources.`,
       metadata: {
-        tool: 'capitalize',
-        inputLength: text.length,
-        outputLength: text.length
+        tool: 'freetieraccesskeys',
+        algorithm: 'sha256',
+        validUntil: new Date(Date.now() + 1 * 60 * 60 * 1000).toISOString(), // 1 hour from now
+        keyLength: accessKeys.length,
+        tier: 'free'
       }
     };
   },
   
-  // Payment-required hash function
-  hash: {
+  // Payment-required premium access keys function
+  // This tool provides premium access keys to fictional compute resources
+  // with extended validity and higher resource limits
+  paidtieraccesskeys: {
     requiresPayment: true,
     paymentAmount: PAYMENT_AMOUNT,
     paymentCurrency: PAYMENT_CURRENCY,
     
-    execute: (text, paymentProof = null) => {
+    execute: (text = "", paymentProof = null) => {
       // If no payment proof, return payment requirements
       if (!paymentProof) {
         return {
@@ -64,7 +75,7 @@ const tools = {
         return {
           result: `Payment verification failed: ${verificationResult.reason}`,
           metadata: {
-            tool: 'hash',
+            tool: 'paidtieraccesskeys',
             error: true,
             paymentVerified: false,
             reason: verificationResult.reason,
@@ -75,15 +86,17 @@ const tools = {
         };
       }
       
-      // Payment verified, generate the hash
-      const hash = crypto.createHash('sha1').update(text).digest('hex');
+      // Payment verified, generate premium access keys (hash of current time)
+      const currentTime = new Date().toISOString();
+      const accessKeys = crypto.createHash('sha256').update(currentTime).digest('hex');
       return {
-        result: hash,
+        result: `Premium Tier Access Keys: ${accessKeys}\nValid for 30 days. Use these keys to access premium compute resources with higher limits.`,
         metadata: {
-          tool: 'hash',
-          algorithm: 'sha1',
-          inputLength: text.length,
-          outputLength: hash.length,
+          tool: 'paidtieraccesskeys',
+          algorithm: 'sha256',
+          validUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
+          keyLength: accessKeys.length,
+          tier: 'premium',
           paymentVerified: true,
           // Include all transaction details
           txHash: verificationResult.txHash,
@@ -108,18 +121,15 @@ const simulateModelProcessing = async (prompt, context) => {
   // Check if the message is a tool command
   if (prompt.startsWith('/')) {
     const parts = prompt.substring(1).split(' ');
-    const toolName = parts[0].toLowerCase();
-    const toolInput = parts.slice(1).join(' ');
-    
-    // Extract payment proof if included
+    let toolName = parts[0].toLowerCase();
+    let actualInput = parts.slice(1).join(' ');
     let paymentProof = null;
-    let actualInput = toolInput;
     
-    // Check if payment proof is included (format: /hash text --tx=0x123...)
-    if (toolInput.includes('--tx=')) {
-      const [input, txPart] = toolInput.split('--tx=');
-      actualInput = input.trim();
-      paymentProof = txPart.trim();
+    // Check if payment proof is included (format: /paidTierAccessKeys --tx=0x123...)
+    const txMatch = actualInput.match(/--tx=([a-zA-Z0-9]+)/);
+    if (txMatch) {
+      paymentProof = txMatch[1];
+      actualInput = actualInput.replace(/\s*--tx=[a-zA-Z0-9]+\s*/, ' ').trim();
     }
     
     // Handle tool invocation

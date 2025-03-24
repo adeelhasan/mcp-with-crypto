@@ -65,12 +65,12 @@ async function testAutonomousPayment() {
     console.log(`✅ Context created with ID: ${contextId}`);
     
     // Step 2: Send a command that requires payment
-    console.log('💬 Sending command that requires payment: /hash test-data');
+    console.log('💬 Sending command that requires payment: /paidtieraccesskeys');
     console.log('🔄 This will trigger the autonomous payment flow...');
     
     const response = await api.sendMessage(
       contextId,
-      '/hash test-autonomous-payment-system',
+      '/paidtieraccesskeys',
       'user',
       true // enable auto-payment
     );
@@ -90,7 +90,7 @@ async function testAutonomousPayment() {
         console.log(`   - Explorer URL: ${response.paymentResult.explorerUrl}`);
       }
       
-      console.log('\n🔢 SHA-1 Hash Result:');
+      console.log('\n🔑 Premium Tier Access Keys:');
       console.log(`   ${response.finalResponse.response.replace(/.*result:\s+|```/g, '').trim()}`);
     } else {
       console.log('ℹ️ No payment was required');

@@ -29,12 +29,12 @@ export default async function handler(req, res) {
     
     // Step 2: Send a command that requires payment
     console.log('\n💬 STEP 2: Sending command that requires payment');
-    console.log('Command: /hash test-autonomous-payment-system');
+    console.log('Command: /paidtieraccesskeys');
     console.log('🔄 This will trigger the autonomous payment flow...');
     
     const response = await api.sendMessage(
       contextId,
-      '/hash test-autonomous-payment-system',
+      '/paidtieraccesskeys',
       'user',
       true // enable auto-payment
     );
@@ -73,13 +73,13 @@ export default async function handler(req, res) {
         explorerUrl: response.paymentResult.explorerUrl
       };
       
-      console.log('\n🔢 SHA-1 Hash Result:');
-      const hashResult = response.finalResponse.response.replace(/.*result:\s+|```/g, '').trim();
-      console.log(`   ${hashResult}`);
+      console.log('\n🔑 Premium Tier Access Keys:');
+      const accessKeys = response.finalResponse.response.replace(/.*result:\s+|```/g, '').trim();
+      console.log(`   ${accessKeys}`);
       
       resultData.result = {
-        type: 'SHA-1 Hash',
-        value: hashResult
+        type: 'Premium Tier Access Keys',
+        value: accessKeys
       };
       
       resultData.finalResponse = response.finalResponse;

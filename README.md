@@ -8,7 +8,8 @@ The Model Context Protocol (MCP) provides a standardized way for AI models to ma
 
 ### Key Features
 
-- **Paid Tools**: Certain tools in the MCP server (like the hash function) require payment
+- **Paid Tools**: Certain tools in the MCP server (like the paidTierAccessKeys function) require payment
+- **Free Tools**: Basic functionality is available without payment (like the freeTierAccessKeys function)
 - **Base Integration**: Uses Base blockchain (Ethereum L2) for fast, low-cost transactions
 - **Automatic Payments**: Client handles payments automatically with a private key (for demo purposes)
 - **Transaction Verification**: Server verifies payments before providing the service
@@ -113,11 +114,11 @@ The system consists of:
 
 ## Payment Flow
 
-1. **Client requests a paid tool** (e.g., `/hash hello world`)
+1. **Client requests a paid tool** (e.g., `/paidTierAccessKeys`)
 2. **Server responds** with payment requirements
 3. **Client automatically processes payment** using the configured wallet
 4. **Server verifies the transaction** on the Base blockchain
-5. **Server delivers the service** once payment is confirmed
+5. **Server delivers premium access keys** once payment is confirmed (with 30-day validity instead of the free tier's 1-hour validity)
 
 ## Detailed Setup Instructions
 

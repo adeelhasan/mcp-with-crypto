@@ -176,7 +176,7 @@ export default function ContextPage() {
                 onChange={(e) => setMessage(e.target.value)}
                 disabled={sending}
                 className="message-input"
-                placeholder="Type your message here or use a tool (e.g., /capitalize hello)"
+                placeholder="Type your message here or use a tool (e.g., /freetieraccesskeys)"
                 ref={messageInputRef}
               />
               <button

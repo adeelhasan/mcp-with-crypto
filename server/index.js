@@ -19,17 +19,17 @@ const activeContexts = new Map();
 
 // Tool descriptions for discovery
 const toolDescriptions = {
-  capitalize: {
-    name: 'capitalize',
-    description: 'Converts input text to all uppercase letters',
-    usage: '/capitalize your text here',
-    example: '/capitalize hello world -> HELLO WORLD'
+  freetieraccesskeys: {
+    name: 'freetieraccesskeys',
+    description: 'Generates basic access keys for compute resources (free tier with 1-hour validity)',
+    usage: '/freetieraccesskeys',
+    example: '/freetieraccesskeys -> Free Tier Access Keys: a1b2c3...'
   },
-  hash: {
-    name: 'hash',
-    description: 'Generates a SHA-1 hash of the input text (requires payment of 0.10 USDC on Base)',
-    usage: '/hash your text here',
-    example: '/hash hello world -> Payment required -> Pay 0.10 USDC -> /hash hello world --tx=0x123... -> 2aae6c35c94fcfb415dbe95f408b9ce91ee846ed',
+  paidtieraccesskeys: {
+    name: 'paidtieraccesskeys',
+    description: 'Generates premium access keys for compute resources with 30-day validity (requires payment of 0.10 USDC on Base)',
+    usage: '/paidtieraccesskeys',
+    example: '/paidtieraccesskeys -> Payment required -> Pay 0.10 USDC -> /paidtieraccesskeys --tx=0x123... -> Premium Tier Access Keys: a1b2c3...',
     paymentRequired: true,
     paymentAmount: '0.10',
     paymentCurrency: 'USDC',
@@ -132,7 +132,7 @@ app.get('/contexts', (req, res) => {
 app.get('/tools', (req, res) => {
   res.json({ 
     tools: toolDescriptions,
-    usage: "To use a tool, send a message that starts with '/' followed by the tool name and the input, e.g., '/capitalize hello world'. Some tools require payment in cryptocurrency. For these tools, you'll receive payment instructions and need to resubmit with your transaction hash using format: '/toolname input --tx=YOUR_TX_HASH'"
+    usage: "To use a tool, send a message that starts with '/' followed by the tool name and the input, e.g., '/freetieraccesskeys'. Some tools require payment in cryptocurrency. For these tools, you'll receive payment instructions and need to resubmit with your transaction hash using format: '/toolname --tx=YOUR_TX_HASH'"
   });
 });
 
